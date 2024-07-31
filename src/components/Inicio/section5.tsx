@@ -28,7 +28,7 @@ const Section5 = () => {
                         <div title="All contributed components"
                             className="flex flex-col justify-center items-center gap-2 border-2 border-dashed border-[#ff630fae] p-4 rounded-md h-32 text-gray-500">
                             <div className="flex gap-2 items-center">
-                                <span className="font-bold text-3xl md:text-4xl">1</span>
+                                <span className="font-bold text-3xl md:text-4xl">5</span>
                                 <svg className="w-8 h-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor">
                                     {/* Aquí va el path */}
