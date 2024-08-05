@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Cavernicola from "../../assets/img/gift/404.gif";
 const Section1 = () => {
     return (
         <section className="py-8 pt-36 bg-white">
@@ -7,7 +8,7 @@ const Section1 = () => {
                     <div className="w-full max-w-2xl text-center">
                         <div 
                             className="bg-cover bg-center h-72 md:h-96 lg:h-[400px] flex items-center justify-center relative"
-                            style={{ backgroundImage: 'url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif)' }}
+                            style={{ backgroundImage: Cavernicola }}
                         >
                             <h1 className="text-5xl md:text-7xl lg:text-9xl text-[#4e17a0] font-bold drop-shadow-lg opacity-15">ERROR 404</h1>
                         </div>

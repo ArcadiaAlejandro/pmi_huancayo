@@ -17,16 +17,14 @@ const Header: React.FC = () => {
     const navigationMenuCloseDelay = 200;
 
     const navigationMenuLeave = () => {
-        if (navigationMenuCloseTimeout) {
-            clearTimeout(navigationMenuCloseTimeout);
-        }
+        navigationMenuClearCloseTimeout();
         setNavigationMenuCloseTimeout(setTimeout(() => {
             navigationMenuClose();
         }, navigationMenuCloseDelay));
     };
 
     const navigationMenuReposition = (navElement: HTMLButtonElement) => {
-        if (navigationDropdownRef.current) {
+        if (navigationDropdownRef.current && navElement) {
             navigationMenuClearCloseTimeout();
             const dropdown = navigationDropdownRef.current;
             dropdown.style.left = `${navElement.offsetLeft}px`;
@@ -178,12 +176,37 @@ const Header: React.FC = () => {
                             fontWeight: isActive ? 'bold' : 'normal',
                             })}
                         >
-                        <a
-                            href="#_"
-                            className="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md bg-background hover:bg-[#4e17a00f] group w-max"
+                        <button
+                            className={`inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md ${
+                                navigationMenu === 'sobre-nosotros' ? 'bg-[#4e17a00f]' : 'hover:bg-[#4e17a00f]'
+                            }`}
+                            onMouseOver={(e) => {
+                                setNavigationMenuOpen(true);
+                                navigationMenuReposition(e.currentTarget);
+                                setNavigationMenu('sobre-nosotros');
+                            }}
+                            onMouseLeave={navigationMenuLeave}
                         >
-                            Sobre Nosotros
-                        </a>
+
+                            <span>Sobre Nosotros</span>
+
+
+                            <svg
+                                className={`relative top-[1px] ml-1 h-3 w-3 ease-out duration-300 ${
+                                    navigationMenuOpen && navigationMenu === 'learn-more' ? '-rotate-180' : ''
+                                }`}
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                aria-hidden="true"
+                            >
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
                         </NavLink>
                     </li>
                 </ul>
@@ -209,7 +232,7 @@ const Header: React.FC = () => {
                     <button
                         className="self-end p-2 text-gray-600"
                         onClick={() => setNavigationMenuOpen(false)}
-                        title='button'
+                        title="Cerrar menú"
                     >
                         <svg
                             className="w-6 h-6"
@@ -234,8 +257,8 @@ const Header: React.FC = () => {
                             <button
                                 className="block py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 w-full flex items-center justify-between"
                                 onClick={() => {
-                                    setNavigationMenuOpen(!navigationMenuOpen);
-                                    setNavigationMenu('getting-started');
+                                    // Toggle visibility of the sub-menu without affecting the main menu
+                                    setNavigationMenu(navigationMenu === 'getting-started' ? '' : 'getting-started');
                                 }}
                             >
                                 Proyectos
@@ -268,8 +291,8 @@ const Header: React.FC = () => {
                             <button
                                 className="block py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 w-full flex items-center justify-between"
                                 onClick={() => {
-                                    setNavigationMenuOpen(!navigationMenuOpen);
-                                    setNavigationMenu('learn-more');
+                                    // Toggle visibility of the sub-menu without affecting the main menu
+                                    setNavigationMenu(navigationMenu === 'learn-more' ? '' : 'learn-more');
                                 }}
                             >
                                 Noticias
@@ -300,9 +323,50 @@ const Header: React.FC = () => {
                                 </div>
                             )}
                         </li>
+
                         <li>
-                            <a href="#_" className="block py-2 text-sm font-medium text-gray-800 hover:bg-gray-100">Sobre Nosotros</a>
+                            <button
+                                className="block py-2 text-sm font-medium text-gray-800 hover:bg-gray-100 w-full flex items-center justify-between"
+                                onClick={() => {
+                                    // Toggle visibility of the sub-menu without affecting the main menu
+                                    setNavigationMenu(navigationMenu === 'sobre-nosotros' ? '' : 'sobre-nosotros');
+                                }}
+                            >
+                                Sobre Nosotros
+                                <svg
+                                    className={`w-4 h-4 transform ${
+                                        navigationMenu === 'sobre-nosotros' ? 'rotate-180' : ''
+                                    }`}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    aria-hidden="true"
+                                >
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            {navigationMenu === 'sobre-nosotros' && (
+                                <div className="pl-4 mt-2">
+                                    <a href="#_" className="block py-2 text-sm text-gray-700 hover:bg-gray-100">Cambios en el Equipo</a>
+                                    <a href="#_" className="block py-2 text-sm text-gray-700 hover:bg-gray-100">Preguntas y Respuestas</a>
+                                    <a href="#_" className="block py-2 text-sm text-gray-700 hover:bg-gray-100">Convocatoria de Voluntarios</a>
+                                    <NavLink
+                                        to="/SobreNosotros/Roles-y-Responsabilidades"
+                                        style={({ isActive }) => ({
+                                        fontWeight: isActive ? 'bold' : 'normal',
+                                        })}
+                                    ><a href="#_" className="block py-2 text-sm text-gray-700 hover:bg-gray-100">Roles y Responsabilidades</a>
+                                    
+                                    </NavLink>
+                                </div>
+                            )}
                         </li>
+
+
                         <li>
                             <button className="block w-full py-2 text-sm font-medium text-white bg-[#06bbdb] hover:bg-[#06bbdbab]">
                                 Inicio
@@ -314,6 +378,7 @@ const Header: React.FC = () => {
                     </ul>
                 </div>
             </div>
+
 
             {/* Dropdown Menu for Desktop */}
             <div
@@ -358,6 +423,8 @@ const Header: React.FC = () => {
                             </a>
                         </div>
                     </div>
+
+
                     <div className={`flex items-stretch justify-center w-full p-6 ${navigationMenu === 'learn-more' ? 'block' : 'hidden'}`}>
                         <div className="w-72">
                             <a href="#_" onClick={navigationMenuClose} className="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
@@ -368,10 +435,7 @@ const Header: React.FC = () => {
                                 <span className="block mb-1 font-medium text-black">Logros y Éxitos</span>
                                 <span className="block font-light leading-5 opacity-50">Conoce de nuestros logros obtenidos por nuestros miembros y/o proyectos</span>
                             </a>
-                            <a href="#_" onClick={navigationMenuClose} className="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                <span className="block mb-1 font-medium text-black">Cambios en el Equipo</span>
-                                <span className="block leading-5 opacity-50">Informate de como nuestro equipo ha evolucionado a lo largo del tiempo.</span>
-                            </a>
+
                         </div>
                         <div className="w-72">
                             <a href="#_" onClick={navigationMenuClose} className="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
@@ -382,12 +446,47 @@ const Header: React.FC = () => {
                                 <span className="block mb-1 font-medium text-black">Información General y Comunitaria</span>
                                 <span className="block leading-5 opacity-50">Informate de las ultimas noticias y actualizaciones que trae nuestra comunidad.</span>
                             </a>
+
+                        </div>
+                    </div>
+
+
+                    <div className={`flex items-stretch justify-center w-full p-6 ${navigationMenu === 'sobre-nosotros' ? 'block' : 'hidden'}`}>
+                        <div className="w-72">
+
+                            <a href="#_" onClick={navigationMenuClose} className="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                <span className="block mb-1 font-medium text-black">Cambios en el Equipo</span>
+                                <span className="block leading-5 opacity-50">Informate de como nuestro equipo ha evolucionado a lo largo del tiempo.</span>
+                            </a>
+
+                            <a href="#_" onClick={navigationMenuClose} className="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                <span className="block mb-1 font-medium text-black">Convocatoria de Voluntariados</span>
+                                <span className="block leading-5 opacity-50">Enterate sobre nuestras vacantes y trabaja con nosotros.</span>
+                            </a>
+
+                        </div>
+                        <div className="w-72">
+
                             <a href="#_" onClick={navigationMenuClose} className="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                                 <span className="block mb-1 font-medium text-black">Preguntas y Respuestas</span>
                                 <span className="block leading-5 opacity-50">En esta sección encontrarás las respuestas a las preguntas más frecuentes sobre nuestra comunidad y sus actividades.</span>
                             </a>
+                            <NavLink
+                                        to="/SobreNosotros/Roles-y-Responsabilidades"
+                                        style={({ isActive }) => ({
+                                        fontWeight: isActive ? 'bold' : 'normal',
+                                        })}
+                            >
+                                <a href="#_" onClick={navigationMenuClose} className="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                    <span className="block mb-1 font-medium text-black">Roles y Responsabilidades</span>
+                                    <span className="block font-light leading-5 opacity-50">Enterate de como gestionamos nuestra comunidad y cuales son nuestras funciones.</span>
+                                </a>
+                            </NavLink>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
 

@@ -16,6 +16,8 @@ import Proyectos  from './routes/proyectos.tsx';
 
 import Error404 from './routes/404.tsx';
 
+import Responsabilidades from './routes/responsabilidades.tsx';
+
 // Configuración del router
 const router = createHashRouter([
   {
@@ -30,10 +32,21 @@ const router = createHashRouter([
     path: '/SobreNosotros',
     element: <Sobre_Nosotros />,
   },
+
+  {
+    path: '/SobreNosotros/Roles-y-Responsabilidades',
+    element: <Responsabilidades />,
+  },
+
   {
     path: '/Noticias',
     element: <Noticias />,
   },
+  {
+    path: '/Unete',
+    element: <Unete />,
+  },
+
   {
     path: '/Unete',
     element: <Unete />,

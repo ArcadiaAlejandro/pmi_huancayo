@@ -172,7 +172,10 @@ const data: TreeNodeData = {
                     label: 'Director de Talento Humano',
                     image: 'https://via.placeholder.com/150', 
                     children: [
-                        { label: 'DIRECTOR 1', image: 'https://via.placeholder.com/150' }, 
+                        {
+                            label: 'Flabia Antonela, Torres Arroyo ',
+                            image: 'https://photos.google.com/u/5/photo/AF1QipPFaaPKamN-Z4niodOD_iTt-ks8kDHO5pDihnXZ', // Cambia esto por la URL de tu imagen
+                        },
                     ] 
                 },
                 {
@@ -206,10 +209,6 @@ const data: TreeNodeData = {
                 {
                     label: 'Antonio Wilfredo, Cahuana Vicuña ',
                     image: 'https://via.placeholder.com/150', // Cambia esto por la URL de tu imagen
-                },
-                {
-                    label: 'Flabia Antonela, Torres Arroyo ',
-                    image: 'https://photos.google.com/u/5/photo/AF1QipPFaaPKamN-Z4niodOD_iTt-ks8kDHO5pDihnXZ', // Cambia esto por la URL de tu imagen
                 },
                 {
                     label: 'Yulysa Liv, Hinojo Camayo',
