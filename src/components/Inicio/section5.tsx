@@ -3,14 +3,23 @@ import Impacto from '../../assets/img/gift/Impacto.gif';
 const Section5 = () => {
     return (
         <>
-            <div className="flex flex-col md:flex-row bg-slate-50">
-                    {/* Imagen a la izquierda */}
+        <section className="bg-slate-50 py-8">
+            <div className="flex flex-col md:flex-row">
+                {/* Imagen a la izquierda */}
                 <div className="md:w-1/2 flex justify-center items-center p-4 mt-8">
-                    <img src={Impacto} alt="Network" className="max-w-full h-96 " />
+                    <div className="relative w-full h-96">
+                        <img
+                            src={Impacto}
+                            alt="Impacto"
+                            className="absolute inset-0 w-full h-full object-contain"
+                            style={{ minHeight: '24rem', minWidth: 'auto' }} // Tamaño mínimo para evitar distorsión
+                        />
+                    </div>
                 </div>
+
                 {/* Contenedor de contenido a la derecha */}
-                <div className="flex flex-col items-center md:items-start gap-4 pt-16 px-2 md:w-1/2">
-                    <p className="flex justify-center w-full gap-2 pt-4 font-extrabold text-2xl md:text-3xl text-[#4d17a0]">
+                <div className="flex flex-col items-center md:items-start gap-4 p-4 md:p-8 md:w-1/2">
+                    <p className="flex justify-center w-full gap-2 font-extrabold text-2xl md:text-3xl text-[#4d17a0]">
                         <span>Nuestro Impacto</span>
                         <svg className="w-8 h-8 text-orange-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke-width="1.5" stroke="currentColor">
@@ -24,8 +33,8 @@ const Section5 = () => {
                     </p>
 
                     {/* Grid de recuadros */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-8 pt-4 mx-auto">
-                        <div title="All contributed components"
+                    <div className="grid grid-cols-2 gap-6 pb-8 pt-2 mx-auto">
+                        <div title="Proyecto Desarrollado"
                             className="flex flex-col justify-center items-center gap-2 border-2 border-dashed border-[#ff630fae] p-4 rounded-md h-32 text-gray-500">
                             <div className="flex gap-2 items-center">
                                 <span className="font-bold text-3xl md:text-4xl">5</span>
@@ -37,7 +46,7 @@ const Section5 = () => {
                             <span className="font-semibold text-sm text-center">Proyecto Desarrollado</span>
                         </div>
 
-                        <div title="Users got help"
+                        <div title="Alianzas Generadas"
                             className="flex flex-col justify-center items-center gap-2 border-2 border-dashed border-[#ff630fae] p-4 rounded-md h-32 text-gray-500">
                             <div className="flex gap-2 items-center">
                                 <span className="font-bold text-3xl md:text-4xl">2</span>
@@ -49,7 +58,7 @@ const Section5 = () => {
                             <span className="font-semibold text-sm text-center">Alianzas Generadas</span>
                         </div>
 
-                        <div title="Total favorites received on components"
+                        <div title="Voluntarios"
                             className="flex flex-col justify-center items-center gap-2 border-2 border-dashed border-[#ff630fae] p-4 rounded-md h-32 text-gray-500">
                             <div className="flex gap-2 items-center">
                                 <span className="font-bold text-3xl md:text-4xl">15</span>
@@ -61,7 +70,7 @@ const Section5 = () => {
                             <span className="font-semibold text-sm text-center">Voluntarios</span>
                         </div>
 
-                        <div title="Component views"
+                        <div title="Seguidores"
                             className="flex flex-col justify-center items-center gap-2 border-2 border-dashed border-[#ff630fae] p-4 rounded-md h-32 text-gray-500">
                             <div className="flex gap-2 items-center">
                                 <span className="font-bold text-3xl md:text-4xl">2.4k</span>
@@ -74,8 +83,8 @@ const Section5 = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
+        </section>
         </>
     );
 };

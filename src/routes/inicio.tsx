@@ -1,22 +1,27 @@
+import { Suspense, lazy } from 'react';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-import Section1 from '../components/Inicio/section1';
-import Section2 from '../components/Inicio/section2';
-import Section3 from '../components/Inicio/section3';
-import Section4 from '../components/Inicio/section4';
-import Section5 from '../components/Inicio/section5';
-import Section6 from '../components/Inicio/section6';
+import Loading from '../routes/loading/Loading'
+
+// Carga diferida de los componentes
+const Section1 = lazy(() => import('../components/Inicio/section1'));
+const Section2 = lazy(() => import('../components/Inicio/section2'));
+const Section3 = lazy(() => import('../components/Inicio/section3'));
+const Section4 = lazy(() => import('../components/Inicio/section4'));
+const Section5 = lazy(() => import('../components/Inicio/section5'));
+const Section6 = lazy(() => import('../components/Inicio/section6'));
 
 export default function Route(){
     return (
     <>
         {/* Seccion de Navegacion */}  
-        <hr/>
         <Header />
-            
+        
+        <Suspense fallback= {< Loading />}>
         {/* Seccion de Contenido */}
+
             {/* Presentacion de PMI Chapter Huancayo */} 
             <Section1 />
             {/* Seccion de que es PMI */} 
@@ -29,6 +34,7 @@ export default function Route(){
             <Section5 />
             {/* Seccion de Equipo*/} 
             <Section6 />
+        </Suspense>
         {/* Seccion de Pie de Pagina */}  
         <Footer />
     </>
