@@ -249,9 +249,16 @@ const Header: React.FC = () => {
                     </button>
                     <ul className="flex flex-col space-y-4 mt-4">
                         <li>
-                            <a href="#_" className="block py-2 text-sm font-medium text-gray-800 hover:bg-gray-100">
+                        <NavLink
+                                        to="/"
+                                        style={({ isActive }) => ({
+                                        fontWeight: isActive ? 'bold' : 'normal',
+                                        })}
+                            >
+                            <a className="block py-2 text-sm font-medium text-gray-800 hover:bg-gray-100">
                                 Inicio
                             </a>
+                        </NavLink>
                         </li>
                         <li>
                             <button
